@@ -39,11 +39,28 @@ def label_plot(ax, title=None, xlabel=None, ylabel=None, elapsed=None):
     if ylabel is not False:
         ax.set_ylabel('y (μm)'if ylabel is None else ylabel)
 
-def plot_eps_data(eps_data, domain, ax=None, **kwargs)
+def plot_eps_data(eps_data, domain, ax=None, **kwargs):
     """
     Plot the wall geometry (dielectric data) within the domain.
     """
     ax = ax or plt.gca()
     ax.imshow(eps_data.T, cmap=cmap_alpha, extent=domain, origin='lower')
+    label_plot(ax, **kwargs)
+
+def plot_ez_data(ez_data, domain, ax=None, vmax=None, aspect=None, **kwargs):
+    """
+    Plot the amplitude of the complex-valued electric field data within the domain.
+    """
+
+    ax = ax or plt.gca()
+    ax.imshow(
+        np.abs(ez_data.T),
+        interpolation='spline36',
+        cmap=cmap_blue,
+        extent=domain,
+        vmax=vmax,
+        aspect=aspect,
+        origin='lower',
+    )
     label_plot(ax, **kwargs)
 
