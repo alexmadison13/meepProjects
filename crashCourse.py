@@ -4,6 +4,11 @@ import meep as mp
 import numpy as np
 import os
 
+"""
+This is a crash course in using the MEEP programming library found at https://humaticlabs.com/blog/meep-double-slit/.
+"""
+
+
 from matplotlib.colors import LinearSegmentedColormap
 
 # set default resolution for images
@@ -33,3 +38,12 @@ def label_plot(ax, title=None, xlabel=None, ylabel=None, elapsed=None):
         ax.set_xlabel('x (μm)'if ylabel is None else xlabel)
     if ylabel is not False:
         ax.set_ylabel('y (μm)'if ylabel is None else ylabel)
+
+def plot_eps_data(eps_data, domain, ax=None, **kwargs)
+    """
+    Plot the wall geometry (dielectric data) within the domain.
+    """
+    ax = ax or plt.gca()
+    ax.imshow(eps_data.T, cmap=cmap_alpha, extent=domain, origin='lower')
+    label_plot(ax, **kwargs)
+
