@@ -21,3 +21,15 @@ cmap_alpha = LinearSegmentedColormap.from_list(
     'custom_blue', [[0,0,0], [0,0.66,1], [1,1,1]]
 )
 
+def label_plot(ax, title=None, xlabel=None, ylabel=None, elapsed=None):
+    """
+    Add a title and x/y labels to the plot.
+    """
+    if title:
+        ax.set_title(title)
+    elif elapsed is not None:
+        ax.set_title(f'{elapsed:0.1f} fs')
+    if xlabel is not False:
+        ax.set_xlabel('x (μm)'if ylabel is None else xlabel)
+    if ylabel is not False:
+        ax.set_ylabel('y (μm)'if ylabel is None else ylabel)
