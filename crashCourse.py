@@ -64,3 +64,18 @@ def plot_ez_data(ez_data, domain, ax=None, vmax=None, aspect=None, **kwargs):
     )
     label_plot(ax, **kwargs)
 
+def plot_pml(pml_thickness, domain, ax=None):
+    ax = ax or plt.gca()
+    x_start = domain[0] + pml_thickness
+    x_end = domain[1] - pml_thickness
+    y_start = domain[2] + pml_thickness
+    y_end = domain[3] -pml_thickness
+    rect = plt.Rectangle(
+        (x_start, y_start),
+        x_end - x_start,
+        y_end - y_start,
+        fill=None,
+        color='#fff',
+        linestyle='dashed',
+    )
+    ax.add_patch(rect)
